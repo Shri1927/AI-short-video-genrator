@@ -1,6 +1,5 @@
-import {useSWR} from 'swr';
+import { ClerkProvider } from '@clerk/nextjs';
 import { Geist, Geist_Mono } from "next/font/google";
-import { ClerkProvider } from "@clerk/clerk-react";
 import "./globals.css";
 import Provider from "./provide";
 
@@ -21,16 +20,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Provider>
-           {children}
-        </Provider>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
+        <ClerkProvider>
+          <Provider>
+            {children}
+          </Provider>
+        </ClerkProvider>
       </body>
     </html>
-    </ClerkProvider>
   );
 }
