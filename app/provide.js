@@ -13,16 +13,19 @@ function Provider({children}) {
      user&&isNewuser();
   },[user]);
 
+  console.log(user);
+  
+
   const isNewuser = async () => {
     const result = await db.select().from(Users)
-    .where(eq(Users.email, user?.primaryEmailAddress?.primaryEmailAddress));
+    .where(eq(Users.email, user?.primaryEmailAddress?.emailAddress));
      console.log(result);
      
     if(!result[0]){
       await db.insert(Users).values({
         name : user?.fullName,
-        email : user?.primaryEmailAddress?.primaryEmailAddress,
-        imgUrl : user?.imgUrl
+        email : user?.primaryEmailAddress?.emailAddress,
+        imgUrl : user?.imageUrl
       });
     }
   }
