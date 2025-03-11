@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Provider from "./provide";
 import {Outfit} from 'next/font/google'
+import {sanserif} from 'next/font/google'
 
 export const metadata = {
   title: "Create Next App",
@@ -10,6 +11,7 @@ export const metadata = {
 };
 
 const outFit = Outfit({subsets:['latin']});
+
 
 export default function RootLayout({ children }) {
   return (
