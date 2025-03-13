@@ -10,14 +10,16 @@ import {
 } from "@/components/ui/select"
 
 
-const SelctTopic = () => {
+const SelctTopic = ({onUserSelect}) => {
     const options = ['Custom Prompt','Random AI Story','Scary Story','Historical Facts','Bed time Story','Motivational','Fun facts'];
     const[selectedOptions, setSelectedOptions] = useState();
     return (
         <div>
             <h2 className='font-bold text-2xl text-violet-600'>Content</h2>
             <p className='text-gray-500'>What is the Topic of your Video?</p>
-            <Select onValueChange={(value) => setSelectedOptions(value)}>
+            <Select onValueChange={(value) =>{ setSelectedOptions(value)
+                value!='Custom Prompt'&&onUserSelect('topic', value)}
+            }>
                 <SelectTrigger className="w-full mt-2 p-6 text-lg">
                     <SelectValue placeholder="Content type" />
                 </SelectTrigger>
@@ -30,7 +32,8 @@ const SelctTopic = () => {
 
             {selectedOptions == 'Custom Prompt'&&
               <div className='mt-2 '>
-                <Textarea/>
+                <Textarea className='mt-3' placeholder='Write a Prompt....'
+                onChange={(e) => onUserSelect('topic', e.target.value)}/>
               </div>
             }
         </div>
