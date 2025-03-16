@@ -10,7 +10,7 @@ const Header = () => {
           <h2 className='font-bold text-xl'>AI - Short Vid </h2>
        </div>
        <div className='flex gap-3 items-center'>
-          <Button className='bg-violet-600 hover:bg-violet-500'>Dashboard</Button>
+          <Button className='bg-violet-600 hover:bg-violet-600'>Dashboard</Button>
           <UserButton/>
        </div>
     </div>
