@@ -5,9 +5,11 @@ import SelectStyle from './_components/SelectStyle'
 import SelectDuration from './_components/SelectDuration'
 import { Button } from '@/components/ui/button'
 import axios from 'axios'
+import CustomLoader from './_components/CustomLoader'
 
 const CreateNew = () => {
   const [formData, setFormData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const onInputChange = (fieldName, fieldValue) => {
     console.log(fieldName, fieldValue);
@@ -19,6 +21,7 @@ const CreateNew = () => {
 
   // Getting Video Script
   const getVideoScript = async () => {
+    setLoading(true);
     if (!formData.topic || !formData.duration || !formData.imageStyle) {
       console.error('Please select all options before proceeding.');
       return;
@@ -39,6 +42,7 @@ const CreateNew = () => {
         console.log('Unexpected error:', error);
       }
     }
+    setLoading(false);
   }
 
   return (
@@ -53,8 +57,9 @@ const CreateNew = () => {
         {/* select Duration */}
         <SelectDuration onUserSelect={onInputChange} />
         {/* create button */}
-        <Button className='mt-10 w-full bg-violet-600' onClick={getVideoScript}>Create Short Video</Button>
+        <Button className='mt-10 w-full bg-violet-600 hover:bg-violet-600 cursor-pointer' onClick={getVideoScript}>Create Short Video</Button>
       </div>
+        <CustomLoader loading={loading} />
     </div>
   )
 }
